@@ -104,62 +104,90 @@ package com.acquisio.basic.java.question05;
  * IMPORTANT: Ajouter toute la javadoc et les test unitaires que vous jugez nécessaire.
  */
 public class Refactoring {
-    Item[] items;
+	Item[] items;
 
-    public Refactoring(Item[] items) {
-        this.items = items;
-    }
+	public Refactoring(Item[] items) {
+		this.items = items;
+	}
+	
+	//I would probably have coded this method using a switch statement, but I decided to add a few more
+	//if statements so that I could keep the rest of the code
+	public void updateQuality() {
+		for (int i = 0; i < items.length; i++) {
+			if (!items[i].name.equals("Aged Brie")
+					&& !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+				if (items[i].quality > 0) {
 
-    public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (!items[i].name.equals("Aged Brie")
-                    && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                        items[i].quality = items[i].quality - 1;
-                    }
-                }
-            } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+					//CONJURED ITEMS
 
-                    if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
+					if (items[i].name.equals("Conjured")) {
+						//If Quality is 1, cannot remove 2
+						if (items[i].quality == 1) {
+							items[i].quality = items[i].quality - 1;
+						}
+						else {
+							items[i].quality = items[i].quality - 2;
+						}
+					}
+					if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")
+							&& !items[i].name.equals("Conjured")) {
+						items[i].quality = items[i].quality - 1;
+					}
+				}
+			} else {
+				if (items[i].quality < 50) {
+					items[i].quality = items[i].quality + 1;
 
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                items[i].quality = items[i].quality + 1;
-                            }
-                        }
-                    }
-                }
-            }
+					if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+						if (items[i].sellIn < 11) {
+							if (items[i].quality < 50) {
+								items[i].quality = items[i].quality + 1;
+							}
+						}
 
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
+						if (items[i].sellIn < 6) {
+							if (items[i].quality < 50) {
+								items[i].quality = items[i].quality + 1;
+							}
+						}
+					}
+				}
+			}
 
-            if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
-                    if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                                items[i].quality = items[i].quality - 1;
-                            }
-                        }
-                    } else {
-                        items[i].quality = items[i].quality - items[i].quality;
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-                }
-            }
-        }
-    }
+			if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+				items[i].sellIn = items[i].sellIn - 1;
+			}
+
+			if (items[i].sellIn < 0) {
+				if (!items[i].name.equals("Aged Brie")) {
+					if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+						if (items[i].quality > 0) {
+							
+							//CONJURED ITEMS
+							
+							if (items[i].name.equals("Conjured")) {
+								//If Quality is 1, cannot remove 2
+								if (items[i].quality == 1) {
+									items[i].quality = items[i].quality - 1;
+								}
+								else {
+									items[i].quality = items[i].quality - 2;
+								}
+							}
+							if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")
+									&& !items[i].name.equals("Conjured")) {
+								items[i].quality = items[i].quality - 1;
+							}
+						}
+					} else {
+						items[i].quality = items[i].quality - items[i].quality;
+					}
+				} else {
+					if (items[i].quality < 50) {
+						items[i].quality = items[i].quality + 1;
+					}
+				}
+			}
+		}
+	}
 }
