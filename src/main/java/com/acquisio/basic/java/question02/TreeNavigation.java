@@ -31,5 +31,25 @@ public class TreeNavigation {
         Node n4 = new Node("5", null, n3);
         Node n = new Node("2", n2, n4);
         // TODO: Implement code here
+        preOrderTraversal(n, 2);
+        
+    }
+    
+    private void preOrderTraversal(Node root, int x) {
+    	//Base case
+    	if (root == null) {
+    		return;
+    	}
+    	
+    	for (int i = 0; i < x; i++) {
+    		System.out.print(".");
+    	}
+    	
+    	System.out.println(root.name);
+    	
+    	for (Node child : root.children) {
+    		preOrderTraversal(child, x+2); //Every child has 2 more dots in front than its parent
+    	}
     }
 }
+
