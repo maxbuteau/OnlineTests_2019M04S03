@@ -20,7 +20,19 @@ public class FooBar {
     }
 
     String fooBar(int value) {
-        // TODO: Insert your code here
-        return null;
+        if (value % 3 == 0 && value % 5 == 0) {
+        	return "FooBar";
+        }
+        else {
+        	if (value % 3 == 0) {
+        		return "Foo";
+        	}
+        	else if (value % 5 == 0) {
+        		return "Bar";
+        	}
+        	else {
+        		return Integer.toString(value);
+        	}
+        }
     }
 }
