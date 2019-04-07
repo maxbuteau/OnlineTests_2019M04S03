@@ -8,16 +8,20 @@ package com.acquisio.basic.java.question03;
  * IMPORTANT: Add all missing javadoc and/or unit tests that you think is necessary.
  */
 public class IssueResolving {
-    public static void main(String[] args) {
-        IssueResolving instance = new IssueResolving();
-        System.out.println(instance.factorial(7));
-    }
+	public static void main(String[] args) {
+		IssueResolving instance = new IssueResolving();
+		System.out.println(instance.factorial(7));
+	}
 
-    int factorial(int n) {
-        // TODO: Fix code here.
-        int result = 0;
-        result = factorial(n - 1) * n;
-        return result;
-    }
+	int factorial(int n) {
+		// TODO: Fix code here.
 
+		//Base case is needed so that the method does not keep calling itself forever
+		if (n == 0) {
+			return 1;
+		}
+		int result = 0;
+		result = factorial(n - 1) * n;
+		return result;
+	}
 }
