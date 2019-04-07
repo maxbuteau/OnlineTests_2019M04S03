@@ -23,13 +23,15 @@ public class Debugging {
         // TODO: Fix code here.
 
         List<Integer> integers = new ArrayList<>(Arrays.asList(values));
-
-        for (Integer i : integers) {
-            if (i % 2 == 0) { // remove even numbers
-                integers.remove(i);
+        
+        //Use an iterator instead of a for each loop so that the even numbers can be removed
+        for (Iterator<Integer> iterator = integers.iterator(); iterator.hasNext();) {
+            Integer integer = iterator.next();
+        	if (integer % 2 == 0) { // remove even numbers
+                iterator.remove();
             }
         }
-
         return integers.toArray(new Integer[integers.size()]);
     }
 }
+
